@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+# Coded By :: A_Asaker
 import cv2
 import numpy as np
 import sys
 
 font = cv2.FONT_HERSHEY_COMPLEX
-# mouse callback function
+
 def write(event,x,y,flags,param):
     if event == cv2.EVENT_FLAG_LBUTTON:
         i = 0
@@ -39,8 +40,10 @@ def write(event,x,y,flags,param):
 
 if len(sys.argv)==2:
 	img = cv2.imread(sys.argv[1])
+	name= "edited"+sys.argv[1]
 else:
 	img = np.zeros((960,1100,3), np.uint8)
+	name= "img.png"
 cv2.imshow('image',img)
 cv2.setMouseCallback('image',write)
 while True:
@@ -49,5 +52,5 @@ while True:
     if k == 27:
         break
     elif k in [115,83]:
-        cv2.imwrite('img.png',img)
+        cv2.imwrite(name,img)
 cv2.destroyAllWindows()
